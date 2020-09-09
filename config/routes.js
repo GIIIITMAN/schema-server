@@ -47,4 +47,7 @@ module.exports.routes = {
   'POST /sql/read': { controller: 'SqlController', action: 'read' },
   'POST /sql/write': { controller: 'SqlController', action: 'write' },
 
+  'GET /endpoint': { controller: 'EndpointController', action: 'find' },
+  'POST /endpoint/submit': { controller: 'EndpointController', action: 'submit' },
+
 };
