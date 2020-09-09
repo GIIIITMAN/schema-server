@@ -29,12 +29,16 @@ module.exports = {
         var page = await Page.findOne({
             path: req.params.path
         });
+        let reqBody = Object.assign({}, req.body.data);
+        if (reqBody && reqBody) {
+            delete reqBody.id;
+        }
         if (page && page.id) {
             page = await Page.updateOne({
                 id: page.id
-            }).set(req.body.data);
+            }).set(reqBody);
         } else {
-            page = await Page.create(req.body.data).fetch();
+            page = await Page.create(reqBody).fetch();
         }
         res.json({
             data: page
