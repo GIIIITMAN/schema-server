@@ -125,3 +125,25 @@ content-type: application/json
 GET http://localhost:1337/endpoint
 
 ###
+
+POST http://localhost:1337/endpoint/delete/6
+
+###
+
+POST http://localhost:1337/endpoint/submit
+Content-Type: application/json
+
+{
+    "endpointName": "allUsers",
+    "sqlString": "select *\nfrom user_info;"
+}
+
+###
+
+POST http://localhost:1337/api/allUsers
+Content-Type: application/json
+
+{
+}
+
+###

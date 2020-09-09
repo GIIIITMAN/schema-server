@@ -12,8 +12,18 @@ module.exports = {
         if (reqBody && reqBody.sqlString) {
             reqBody.sqlString = reqBody.sqlString.replace(/\r?\n/g, ' ');
         }
-        let result = await Endpoint.create(reqBody).fetch();
-        res.json(result);
+        let existEndpoint = await Endpoint.findOne({
+            endpointName: reqBody.endpointName
+        })
+        if (existEndpoint && existEndpoint.id) {
+            let result = await Endpoint.updateOne({
+                endpointName: reqBody.endpointName
+            }).set(reqBody);
+            res.json(result);
+        } else {
+            let result = await Endpoint.create(reqBody).fetch();
+            res.json(result);
+        }
     }
 };
 
