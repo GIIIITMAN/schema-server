@@ -10,9 +10,9 @@ module.exports = {
     submit: async function(req, res) {
         let reqBody = req.body;
         if (reqBody && reqBody.sqlString) {
-            reqBody.sqlString = reqBody.sqlString.replace('\n', ' ');
+            reqBody.sqlString = reqBody.sqlString.replace(/\r?\n/g, ' ');
         }
-        let result = await Endpoint.create(reqBody);
+        let result = await Endpoint.create(reqBody).fetch();
         res.json(result);
     }
 };
