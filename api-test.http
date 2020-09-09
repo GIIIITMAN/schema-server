@@ -1,0 +1,121 @@
+###
+
+GET http://localhost:1337/page
+
+###
+
+GET http://localhost:1337/page/4
+
+###
+
+GET http://localhost:1337/page/byName/haha
+
+###
+
+GET http://localhost:1337/page/byPath/hello-world
+
+###
+
+POST http://localhost:1337/page/delete/9
+content-type: application/json
+
+{}
+
+###
+
+POST http://localhost:1337/page/3
+content-type: application/json
+
+{
+    "name": "haha"
+}
+
+###
+
+POST http://localhost:1337/page
+content-type: application/json
+
+{
+    "name": "sample",
+    "path": "index",
+    "schema": { "type": "page" }
+}
+
+###
+
+POST http://localhost:1337/page/edit/test-page
+content-type: application/json
+
+{
+    "name": "tiger",
+    "path": "test-page",
+    "schema": { "type": "form" }
+}
+
+###
+
+POST http://localhost:1337/page/edit/hello-world
+content-type: application/json
+
+{
+    "data":{
+        "id":"1",
+        "icon":"fa fa-file",
+        "path":"hello-world",
+        "label":"Hello world",
+        "schema":{
+            "type":"page",
+            "title":"Demo",
+            "body":[
+                {"type":"tpl","tpl":"初始页面"},
+                {
+                    "type":"crud",
+                    "api":"https://houtai.baidu.com/api/sample?waitSeconds=1&orderBy=id&orderDir=desc",
+                    "mode":"table",
+                    "messages":{"fetchSuccess":"good day"},
+                    "itemActions":[
+                        {"label":"删除","type":"button","size":"sm","actionType":"ajax","api":"post:/api/delete/${id}","className":"","iconClassName":"","hiddenOnHover":false,"level":"default"}
+                    ],
+                    "columns":[
+                        {"name":"id","label":"ID","type":"text"},
+                        {"name":"engine","label":"Rendering engine"},
+                        {"type":"status","label":"列说明"},
+                        {"type":"operation","label":"列说明"}
+                    ],
+                    "filter":{
+                        "title":"查询条件",
+                        "controls":[
+                            {"type":"text","name":"keywords","label":"关键字"}
+                        ]
+                    },
+                    "initFetch":true,
+                    "loadDataOnce":true,
+                    "bulkActions":[
+                        {"label":"按钮","type":"button"}
+                    ]
+                }
+            ],
+            "messages":{},
+            "aside":[
+                {
+                    "type":"nav",
+                    "stacked":true,
+                    "links":[
+                        {"label":"页面1","to":"?id=1"},
+                        {"label":"页面2","to":"?id=2"}
+                    ]
+                }
+            ]
+        }
+    }
+}
+
+###
+
+POST http://localhost:1337/sql/read
+
+###
+
+POST http://localhost:1337/sql/write
+
+### 
