@@ -126,7 +126,7 @@ GET http://localhost:1337/endpoint
 
 ###
 
-POST http://localhost:1337/endpoint/delete/6
+POST http://localhost:1337/endpoint/delete/9
 
 ###
 
@@ -134,16 +134,17 @@ POST http://localhost:1337/endpoint/submit
 Content-Type: application/json
 
 {
-    "endpointName": "allUsers",
-    "sqlString": "select *\nfrom user_info;"
+    "endpointName": "findUserById",
+    "sqlString": "select *\nfrom user_info\nwhere user_id = '@user_id@';"
 }
 
 ###
 
-POST http://localhost:1337/api/allUsers
+POST http://localhost:1337/api/findPaymentByDate
 Content-Type: application/json
 
 {
+    "created_date": "20200101"
 }
 
 ###

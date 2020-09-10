@@ -4,13 +4,26 @@ const executor = async function(req, res, sql) {
             sql,
             (err, results, fields) => {
                 if (err) {
-                    res.systemErr(err);
+                    res.serverError(err);
                 }
-                res.json(results);
+                res.json({
+                    status: 0,
+                    data: results
+                });
             }
         );
     });
-} 
+}
+
+const sqlParser = function(sql, paramsObj) {
+    let sqlString = sql;
+    for (let key in paramsObj) {
+        sqlString = sqlString.replace(new RegExp(`@${key}@`, 'g'), paramsObj[key]);
+    }
+    // replace the rest placeholder as empty
+    sqlString = sqlString.replace(/@[A-Za-z_0-9]+@/g, '');
+    return sqlString;
+}
 
 
 module.exports = {
@@ -21,7 +34,10 @@ module.exports = {
             endpointName: name
         });
         if (endpoint && endpoint.sqlString) {
-            await executor(req, res, endpoint.sqlString);
+            let params = req.body;
+            let sql = sqlParser(endpoint.sqlString, params);
+            console.log(sql);
+            await executor(req, res, sql);
         } else {
             res.notFound();
         }

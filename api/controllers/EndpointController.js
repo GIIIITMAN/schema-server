@@ -19,10 +19,16 @@ module.exports = {
             let result = await Endpoint.updateOne({
                 endpointName: reqBody.endpointName
             }).set(reqBody);
-            res.json(result);
+            res.json({
+                status: 0,
+                data: result
+            });
         } else {
             let result = await Endpoint.create(reqBody).fetch();
-            res.json(result);
+            res.json({
+                status: 0,
+                data: result
+            });
         }
     }
 };
