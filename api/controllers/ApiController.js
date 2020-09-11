@@ -4,7 +4,11 @@ const executor = async function(req, res, sql) {
             sql,
             (err, results, fields) => {
                 if (err) {
-                    res.serverError(err);
+                    // res.serverError(err);
+                    res.json({
+                        statue: 500,
+                        msg: err
+                    });
                 }
                 res.json({
                     status: 0,
