@@ -140,6 +140,39 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:1337/endpoint/func
+Content-Type: application/json
+
+{
+    "endpointName": "findUserFunc",
+    "funcString": "function(request, response, db){\n\n\n\nresponse.json({\na:'a',\nb:'b',...req.body});return null;}"
+}
+
+###
+
+POST http://localhost:1337/api/func/findUserFunc
+Content-Type: application/json
+
+{
+    "created_date": "20200103"
+}
+
+###
+
+POST http://localhost:1337/api/func/testFunc1
+Content-Type: application/json
+
+{
+    "created_date": "20200103"
+}
+
+###
+
+POST http://localhost:1337/api/func/testFunc2
+Content-Type: application/json
+
+###
+
 POST http://localhost:1337/api/findPaymentByDate
 Content-Type: application/json
 

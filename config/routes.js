@@ -49,9 +49,11 @@ module.exports.routes = {
 
   'GET /endpoint': { controller: 'EndpointController', action: 'find' },
   'POST /endpoint/submit': { controller: 'EndpointController', action: 'submit' },
+  'POST /endpoint/func': { controller: 'EndpointController', action: 'func' },
   'POST /endpoint/delete/:id': { controller: 'EndpointController', action: 'destroy' },
 
 
   'POST /api/:name': { controller: 'ApiController', action: 'execute' },
+  'POST /api/func/:name': { controller: 'ApiController', action: 'func' },
 
 };
